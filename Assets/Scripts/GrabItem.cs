@@ -52,7 +52,6 @@ public class GrabItem : MonoBehaviour
         }
     }
 
-
     private void ChangeRigWeight(float weight)
     {
         if (weight >= 0 && weight <= 1)

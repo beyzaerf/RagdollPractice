@@ -46,9 +46,8 @@ public class PlayerController : MonoBehaviour
 
         if (!isGrounded && !forceApplied)
         {
-            mainRb.AddForce(Vector3.down, ForceMode.Impulse);
+            mainRb.AddForce(Vector3.down * 50 , ForceMode.Impulse);
             forceApplied = true;
-            Debug.Log("kackez");
         }
 
     }
