@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grabbable
   - MiniHuman
+  - Trampoline
   layers:
   - Default
   - TransparentFX
