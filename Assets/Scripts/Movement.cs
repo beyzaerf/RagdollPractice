@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour
     public float speed;
     public FloatingJoystick variableJoystick;
     public Rigidbody hipRigidbody;
-    private bool didJump = false;
     [SerializeField] private ConfigurableJoint hipJoint;
     [SerializeField] private Animator anim;
     [SerializeField] private SkinnedMeshRenderer skinnedMesh;
@@ -29,13 +28,6 @@ public class Movement : MonoBehaviour
         {
             walk = false;
         }
-
-        //if (didJump)
-        //{
-        //    hipRigidbody.AddForce(Vector3.down * 20, ForceMode.Impulse);
-        //    Debug.Log("force applied");
-        //}
-
         anim.SetBool("Walk", walk);
     }
 
@@ -43,15 +35,16 @@ public class Movement : MonoBehaviour
     {
         if (other.CompareTag("Trampoline"))
         {
-            if (!didJump)
+            float weight = skinnedMesh.GetBlendShapeWeight(0);
+            hipRigidbody.AddForce(Vector3.up * 160, ForceMode.Impulse);
+            DOTween.To(() => weight, x => skinnedMesh.SetBlendShapeWeight(0, 92), 0f, 0.1f).OnComplete(() =>
             {
-                hipRigidbody.AddForce(Vector3.up * 100, ForceMode.Impulse);
-                //DOTween.To(skinnedMesh.GetBlendShapeWeight, 50, 92, 1);
-                skinnedMesh.SetBlendShapeWeight(0, 92);
-            }
-            didJump = true;
-            Debug.Log(didJump);
+                DOTween.To(() => weight, x => skinnedMesh.SetBlendShapeWeight(0, 0), 0f, 0.1f).OnComplete(() =>
+                {
+                    skinnedMesh.SetBlendShapeWeight(0, 50);
+                    hipRigidbody.AddForce(Vector3.down * 20, ForceMode.Impulse);
+                });
+            });
         }
-        didJump = false;
     }
 }
