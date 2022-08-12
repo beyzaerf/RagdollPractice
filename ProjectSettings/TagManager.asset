@@ -7,6 +7,7 @@ TagManager:
   - Grabbable
   - MiniHuman
   - Trampoline
+  - Enemy
   layers:
   - Default
   - TransparentFX
