@@ -30,7 +30,6 @@ public class GrabItem : MonoBehaviour
 
         if (canGrab && grabbedObject)
         {
-            //float topLeft = grabbedObject.GetComponent<Renderer>().bounds.max.y;
             rightTarget.position = grabbedObject.GetComponent<Renderer>().bounds.min;
             leftTarget.position = grabbedObject.GetComponent<Renderer>().bounds.max;
             ChangeRigWeight(1);
