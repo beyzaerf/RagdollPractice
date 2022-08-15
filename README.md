@@ -4,3 +4,4 @@ Model and initial code followed by a [tutorial](https://www.youtube.com/watch?v=
 - Grabbing an item using **animation rigging**
 - Jumping 
 - Third person camera
+- Cutting an enemy in half and growing from its pieces
