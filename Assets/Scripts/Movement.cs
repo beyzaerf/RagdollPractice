@@ -6,7 +6,6 @@ using DG.Tweening;
 public class Movement : MonoBehaviour
 {
     private bool walk;
-    //private bool isGrounded = true;
     public float speed;
     private int gravityScale = 5;
     public FloatingJoystick variableJoystick;
@@ -18,15 +17,6 @@ public class Movement : MonoBehaviour
     public void FixedUpdate()
     {
         Move();
-
-        //if (!isGrounded)
-        //{
-        //if (hipRigidbody.velocity.y == 0)
-        //{
-        //    hipRigidbody.AddForce(gravityScale * hipRigidbody.mass * Physics.gravity);
-        //    Debug.Log("works");
-        //}
-        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +24,7 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("Trampoline"))
         {
             float weight = skinnedMesh.GetBlendShapeWeight(0);
-            hipRigidbody.AddForce(Vector3.up * 160, ForceMode.Impulse);
+            hipRigidbody.AddForce(Vector3.up * 200, ForceMode.Impulse);
             DOTween.To(() => weight, x => skinnedMesh.SetBlendShapeWeight(0, 92), 0f, 0.1f).OnComplete(() =>
             {
                 DOTween.To(() => weight, x => skinnedMesh.SetBlendShapeWeight(0, 0), 0f, 0.1f).OnComplete(() =>
@@ -64,13 +54,4 @@ public class Movement : MonoBehaviour
 
         hipRigidbody.AddForce(gravityScale * hipRigidbody.mass * Physics.gravity);
     }
-
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    isGrounded = true;
-    //}
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    isGrounded = false;
-    //}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUpEnemy : MonoBehaviour
 {
     [SerializeField] private Transform character;
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("MiniHuman"))
